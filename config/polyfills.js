@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 if (typeof Promise === 'undefined') {
@@ -20,3 +21,8 @@ Object.assign = require('object-assign');
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
 }
+require('core-js/es6/string');
+require('core-js/es6/symbol');
+require('core-js/es6/array');
+require('core-js/es6/object');
+require('core-js/es6/promise');

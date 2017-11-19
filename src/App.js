@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Uploader from './components/Uploader';
+import Uploader from './components/Uploader/Uploader';
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
 	render() {

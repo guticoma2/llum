@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 const autoprefixer = require('autoprefixer');
@@ -11,6 +12,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+console.log(path.resolve(__dirname, '../src/resources/**/*.sass'));
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -150,6 +152,51 @@ module.exports = {
               // directory for faster rebuilds.
               cacheDirectory: true,
             },
+          },
+          {
+            //TODO: Remove this when we create a common configuration for all components and one specific for each component.
+            test: /\.sass$/,
+            exclude: /node_modules/,
+              use: [
+                require.resolve('style-loader'),
+                {
+                  loader: require.resolve('css-loader'),
+                  options: {
+                    url: false,
+                    modules: true,
+                    importLoaders: 1,
+                    localIdentName: 'guticoma-[name]__[local]'
+                  }
+                },
+                {
+                  loader: require.resolve('postcss-loader'),
+                  options: {
+                    // Necessary for external CSS imports to work
+                    // https://github.com/facebookincubator/create-react-app/issues/2677
+                    ident: 'postcss',
+                    plugins: () => [
+                      require('postcss-flexbugs-fixes'),
+                      autoprefixer({
+                        browsers: [
+                          '>1%',
+                          'last 4 versions',
+                          'Firefox ESR',
+                          'not ie < 9', // React doesn't support IE8 anyway
+                        ],
+                        flexbox: 'no-2009',
+                      }),
+                    ],
+                  },
+                },
+                { loader: 'resolve-url-loader' },
+                { loader: 'sass-loader?sourceMap' },
+                {
+                  loader: 'sass-resources-loader',
+                  options: {
+                    resources: [path.resolve(__dirname, '../src/resources/**/*.sass')]
+                  }
+                }],
+              
           },
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.

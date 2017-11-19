@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import getFilesFromEventFiltered from '../utils/getFilesFromEventFiltered';
+import getFilesFromEventFiltered from '../../utils/getFilesFromEventFiltered';
+import styles from './module-css/uploader.sass';
 
 class Uploader extends Component {
 	static defaultProps = {
@@ -10,7 +11,7 @@ class Uploader extends Component {
 		multiple: false,
 		onChange: () => { },
 		onSubmit: () => { },
-		className: '',
+		theme: styles,
 		onFocus: () => { },
 		extensionsAllowed: []
 	};
@@ -21,7 +22,8 @@ class Uploader extends Component {
 		multiple: PropTypes.bool,
 		onChange: PropTypes.func,
 		onSubmit: PropTypes.func,
-		className: PropTypes.string,
+		// eslint-disable-next-line react/forbid-prop-types
+		theme: PropTypes.object,
 		onFocus: PropTypes.func,
 		// eslint-disable-next-line react/forbid-prop-types
 		extensionsAllowed: PropTypes.array
@@ -60,7 +62,7 @@ class Uploader extends Component {
 			}
 		};
 
-		return (<div onDrop={this.onDrop} className={this.props.className} onFocus={this.props.onFocus} >
+		return (<div onDrop={this.onDrop} className={this.props.theme.container} onFocus={this.props.onFocus} >
 			<span key="1">{messageNotClickable}</span>
 			<a key="2" onClick={this.onClickMessage}>{messageClickable}</a>
 			<input key="3" accept={this.props.extensionsAllowed.join(',')} {...inputFileAttributes} ref={(ref) => { this.fileInputElement = ref; }} />
