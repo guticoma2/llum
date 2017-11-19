@@ -1,0 +1,50 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true,
+      "jest": true
+    },
+    "extends": "airbnb",
+    "rules": {
+      "arrow-parens": ["error", "always"],
+      "max-len": "off",
+      "comma-dangle": "off",
+      "new-cap": "warn",
+      "no-debugger": "off",
+      "react/prefer-stateless-function": "error",
+      "react/jsx-filename-extension": "off",
+      "react/jsx-indent":  ["error", "tab"],
+      "react/jsx-indent-props": ["error", "tab"],
+      "import/no-extraneous-dependencies": "off",
+      "import/prefer-default-export": "error",
+      "jsx-a11y/no-static-element-interactions": "off",
+      "jsx-a11y/anchor-has-content": [ 2, { "components": [ "Anchor" ] }],
+      "class-methods-use-this": "error",
+      "indent": ["error", "tab"],
+      "linebreak-style": "off",
+      "no-tabs": "off",
+      "template-curly-spacing": ["error", "always"],
+      "react/prop-types": "error", 
+      "react/forbid-prop-types": "error",
+      "react/jsx-no-bind": "error",
+      "react/no-children-prop": "error",
+      "no-prototype-builtins": "error",
+      "react/no-unused-prop-types": "error",
+      "no-unused-expressions": "error",
+      "no-var": "error",
+      "no-param-reassign": "error",
+      "no-plusplus": "error",
+      "prefer-template": "error",
+      // disallow certain syntax forms (FROM: styles in eslint-airbnb-base)
+      // http://eslint.org/docs/rules/no-restricted-syntax
+      "no-restricted-syntax": [
+        "warn",
+        "ForInStatement",
+        "ForOfStatement",
+        "LabeledStatement",
+        "WithStatement"
+      ]
+    }
+  }
+  
