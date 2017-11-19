@@ -5,12 +5,11 @@ import getFilesFromEventFiltered from '../utils/getFilesFromEventFiltered';
 class Uploader extends Component {
 	static defaultProps = {
 		autoUpload: false,
-		messageClickable: '',
-		messageNotClickable: '',
+		messageClickable: 'drop or click here',
+		messageNotClickable: 'To upload a file ',
 		multiple: false,
 		onChange: () => { },
 		onSubmit: () => { },
-		hideMessages: false,
 		className: '',
 		onFocus: () => { },
 		extensionsAllowed: []
@@ -22,7 +21,6 @@ class Uploader extends Component {
 		multiple: PropTypes.bool,
 		onChange: PropTypes.func,
 		onSubmit: PropTypes.func,
-		hideMessages: PropTypes.bool,
 		className: PropTypes.string,
 		onFocus: PropTypes.func,
 		// eslint-disable-next-line react/forbid-prop-types
@@ -63,11 +61,8 @@ class Uploader extends Component {
 		};
 
 		return (<div onDrop={this.onDrop} className={this.props.className} onFocus={this.props.onFocus} >
-			{!this.props.hideMessages &&
-				[<span key="1">{messageNotClickable}</span>,
-					<a key="2" onClick={this.onClickMessage}>{messageClickable}</a>,
-				]
-			}
+			<span key="1">{messageNotClickable}</span>
+			<a key="2" onClick={this.onClickMessage}>{messageClickable}</a>
 			<input key="3" accept={this.props.extensionsAllowed.join(',')} {...inputFileAttributes} ref={(ref) => { this.fileInputElement = ref; }} />
 		</div>);
 	}
