@@ -4,7 +4,7 @@ import bars from './graphs/bars';
 import { unionClassNames } from '../../utils';
 import styles from './module-css/bars.sass';
 
-class Bars extends Component {
+class Canvas extends Component {
 	static defaultProps = {
 		theme: styles,
 		scale: 1000,
@@ -47,5 +47,5 @@ class Bars extends Component {
 	}
 }
 
-export default Bars;
+export default Canvas;
 
