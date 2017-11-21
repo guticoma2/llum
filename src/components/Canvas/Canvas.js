@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import bars from './graphs/bars';
 import { unionClassNames } from '../../utils';
-import styles from './module-css/bars.sass';
+import styles from './module-css/canvas.sass';
 
 class Canvas extends Component {
 	static defaultProps = {
@@ -36,7 +36,7 @@ class Canvas extends Component {
 		const titleClass = unionClassNames(styles.title, this.props.theme.title);
 		const canvasClass = unionClassNames(styles.canvas, this.props.theme.canvas);
 		const containerClass = unionClassNames(styles.container, this.props.theme.container);
-		const height = (this.props.data.maxPrice * this.props.scale);
+		const height = (this.props.data.maxPrice * this.props.scale) + 20;
 		const width = (24 * 20);
 		return (
 			<div className={containerClass}>
