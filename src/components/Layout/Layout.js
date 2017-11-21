@@ -26,9 +26,9 @@ class Layout extends React.Component {
 	render() {
 		const containerClass = unionClassNames(styles.container, this.props.theme.container);
 		const uploaderContainerClass =
-			unionClassNames(styles.uploaderContainer, this.props.theme.uploaderContainer);
+			unionClassNames(styles['uploader-container'], this.props.theme['uploader-container']);
 		const canvasContainerClass =
-			unionClassNames(styles.canvasContainer, this.props.theme.canvasContainer);
+			unionClassNames(styles['canvas-container'], this.props.theme['canvas-container']);
 		const prices = priceReader(this.state.file);
 		const getCanvasCollection = (data) =>
 			data.map((dataByCanvas) =>

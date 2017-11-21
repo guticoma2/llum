@@ -4,6 +4,7 @@ import fixEmptyHours from './fixEmptyHours';
 export default (prices = []) => {
 	const normalizedPriceXHour = { };
 	const pricesArr = [];
+	if (!prices.length) return [];
 	prices.forEach((hourRange) => {
 		const key = Object.keys(hourRange)[0];
 		const rangeArr = key.split('-');
