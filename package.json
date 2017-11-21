@@ -58,7 +58,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "cosmos": "cosmos",
+    "cosmos:export": "cosmos-export"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./config/jest/setup.js",
@@ -106,6 +108,7 @@
   "devDependencies": {
     "babel-plugin-webpack-loaders": "^0.9.0",
     "node-sass": "^4.7.2",
+    "react-cosmos": "^3.0.0",
     "sass-loader": "^6.0.6"
   }
 }
