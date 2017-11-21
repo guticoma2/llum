@@ -61,6 +61,7 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "./config/jest/setup.js",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
