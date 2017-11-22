@@ -14,15 +14,19 @@ const draw = (context, scale, pricesXHour = { }) => {
 	const bottom = pricesXHour.maxPrice * scale;
 	const max = pricesXHour.maxPrice;
 	const min = pricesXHour.minPrice;
-	for (let hour = 0, endHour = 23, x = 0; hour <= endHour; hour += 1) {
-		const price = pricesXHour[hour] * scale;
+	for (let hour = 0, endHour = config.HOURS_PER_DAY - 1, x = 0; hour <= endHour; hour += 1) {
+		const realPrice = pricesXHour[hour];
+		const previousRealPrice = hour > 0 ? pricesXHour[hour - 1] : null;
+		const scaledPrice = realPrice * scale;
 		// eslint-disable-next-line
-		context.fillStyle = getColor(min, max, pricesXHour[hour]);
-		context.fillRect(x, bottom - price, config.BAR_WIDTH, bottom - (bottom - price));
+		context.fillStyle = getColor(min, max, realPrice);
+		context.fillRect(x, bottom - scaledPrice, config.BAR_WIDTH, bottom - (bottom - scaledPrice));
 		// eslint-disable-next-line
 		context.fillStyle = 'black';
 		context.fillText(hour, x, bottom + config.TOP_MARGIN);
-
+		if (!previousRealPrice || previousRealPrice !== realPrice) {
+			context.fillText(realPrice, x, (bottom - scaledPrice) + 10);
+		}
 		x += config.BAR_WIDTH;
 	}
 };
