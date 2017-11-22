@@ -18,7 +18,11 @@ class Canvas extends Component {
 		scale: PropTypes.number,
 		// eslint-disable-next-line react/forbid-prop-types
 		data: PropTypes.object,
-		graphType: PropTypes.func,
+		// eslint-disable-next-line react/forbid-prop-types
+		graphType: PropTypes.shape({
+			draw: PropTypes.func,
+			getDimensions: PropTypes.func
+		}),
 		title: PropTypes.string
 	};
 	componentDidMount() {
@@ -31,16 +35,13 @@ class Canvas extends Component {
 	updateCanvas() {
 		if (!this.props.data) return;
 		const context = this.el.getContext('2d');
-		this.props.graphType(context, this.props.scale, this.props.data);
+		this.props.graphType.draw(context, this.props.scale, this.props.data);
 	}
 	render() {
 		const titleClass = unionClassNames(styles.title, this.props.theme.title);
 		const canvasClass = unionClassNames(styles.canvas, this.props.theme.canvas);
 		const containerClass = unionClassNames(styles.container, this.props.theme.container);
-		const dimensions = {
-			height: this.props.data ? ((this.props.data.maxPrice * this.props.scale) + 20) : 20,
-			width: (24 * 20)
-		};
+		const dimensions = this.props.graphType.getDimensions(this.props.data, this.props.scale);
 		return (
 			<div className={containerClass}>
 				<h4 className={titleClass}>{this.props.title}</h4>
