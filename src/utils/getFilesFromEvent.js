@@ -1,4 +1,4 @@
-export default function getFilesFromEvent(event) {
+export default (event) => {
 	const filesList = [];
 	let filesEvent = [];
 	// In case of Drag and Drop
@@ -21,5 +21,4 @@ export default function getFilesFromEvent(event) {
 		});
 	});
 	return filesList;
-}
-
+};
