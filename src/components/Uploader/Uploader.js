@@ -13,7 +13,7 @@ class Uploader extends Component {
 		onSubmit: () => { },
 		theme: styles,
 		onFocus: () => { },
-		extensionsAllowed: []
+		allowedExtensions: []
 	};
 	static propTypes = {
 		autoUpload: PropTypes.bool,
@@ -26,7 +26,7 @@ class Uploader extends Component {
 		theme: PropTypes.object,
 		onFocus: PropTypes.func,
 		// eslint-disable-next-line react/forbid-prop-types
-		extensionsAllowed: PropTypes.array
+		allowedExtensions: PropTypes.array
 	};
 	componentDidMount() {
 		document.addEventListener('dragover', (event) => { event.preventDefault(); }, false);
@@ -38,7 +38,7 @@ class Uploader extends Component {
 	}
 	onDrop = (event) => {
 		event.preventDefault();
-		const filesLoaded = getFilesFromEventFiltered(event, this.props.extensionsAllowed);
+		const filesLoaded = getFilesFromEventFiltered(event, this.props.allowedExtensions);
 		if (!filesLoaded.length) return;
 		if (this.props.autoUpload) {
 			this.props.onSubmit(filesLoaded);
@@ -65,7 +65,7 @@ class Uploader extends Component {
 		return (<div onDrop={this.onDrop} className={this.props.theme.container} onFocus={this.props.onFocus} >
 			<span key="1">{messageNotClickable}</span>
 			<a key="2" onClick={this.onClickMessage}>{messageClickable}</a>
-			<input key="3" accept={this.props.extensionsAllowed.join(',')} {...inputFileAttributes} ref={(ref) => { this.fileInputElement = ref; }} />
+			<input key="3" accept={this.props.allowedExtensions.join(',')} {...inputFileAttributes} ref={(ref) => { this.fileInputElement = ref; }} />
 		</div>);
 	}
 }
