@@ -1,0 +1,32 @@
+$iconsFromSprite: ('freedom' 'light') // 'paper' etc... following order from css
+
+=do-icon-dimension($names)
+ $ycoords: (0px -142px -255px)
+ $xcoordInc: 136px
+ $xcoord: 0px
+ @each $name in $names
+  @each $ycoord in $ycoords
+   @if $ycoord == 0px
+    a.icon.big-#{$name}
+     width: 116px
+     height: 116px
+     background-position: $xcoord $ycoord
+   @else if $ycoord == -142px
+    a.icon.medium-#{$name}
+     width: 86px
+     height: 86px
+     background-position: $xcoord $ycoord
+   @else if $ycoord == -255px
+    a.icon.small-#{$name}
+     width: 71px
+     height: 71px
+     background-position: $xcoord $ycoord
+  $xcoord: $xcoord - $xcoordInc
+
+
+a.icon
+ display: inline-block
+ font-size: 0px
+ color: transparent
+ background-image: url('./hl-icon-sprites.svg')
+ +do-icon-dimension($iconsFromSprite)
