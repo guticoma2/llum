@@ -4,7 +4,8 @@ import Canvas from '../Canvas';
 
 describe('Canvas is rendered', () => {
 	test('Element exists', () => {
-		const buttonWrapper = mount(<Canvas />);
-		expect(buttonWrapper.find(Canvas));
+		const wrapper = mount(<Canvas />);
+		expect(wrapper.find(Canvas));
 	});
+	// More test related with render...
 });
